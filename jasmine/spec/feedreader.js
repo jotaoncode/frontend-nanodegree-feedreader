@@ -111,8 +111,9 @@ $(function() {
          * Remember, loadFeed() is asynchronous so this test wil require
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
-      it('load feeds asynchronous', function () {
+      it('load feeds asynchronous', function (done) {
         expect($('.entry').length).not.toBe(0);
+        done();
       });
     });
     /* Write a new test suite named "New Feed Selection*/
@@ -125,7 +126,7 @@ $(function() {
        * by the loadFeed function that the content actually changes.
        * Remember, loadFeed() is asynchronous.
        */
-      it('feed is loaded with content', function () {
+      it('feed is loaded with content', function (done) {
         var entries = $('.feed').find('.entry'), entryValue;
         entries.each(function (index, entry) {
           expect($(entry).find('h2').text()).toBeDefined();
@@ -133,6 +134,12 @@ $(function() {
           expect($(entry).find('p').text()).toBeDefined();
           expect($(entry).find('p').text()).not.toBe("");
         });
+        done();
+      });
+      it('there should be as many entries as the ones in the list feed we require', function (done) {
+        var entries = $('.feed').find('.entry');
+        expect(entries.length).toBe(allFeeds.length);
+        done();
       });
     });
 }());
