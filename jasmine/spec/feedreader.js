@@ -117,14 +117,18 @@ $(function() {
     });
     /* Write a new test suite named "New Feed Selection*/
     describe('New Feed Selection', function () {
-      var contentBefore;
+      var contentBefore, entries;
+      beforeEach(function (done) {
+        entries = $('.feed .entry');
+        loadFeed(0, done);
+      });
+
       /* Write a test that ensures when a new feed is loaded
        * by the loadFeed function that the content actually changes.
        * Remember, loadFeed() is asynchronous.
        */
       it('Feed is loaded with content for first feed', function (done) {
         loadFeed(0, function () {
-          var entries = $('.feed').find('.entry'), entryValue;
           entries.each(function (index, entry) {
             expect($(entry).find('h2').text()).toBeDefined();
             expect($(entry).find('h2').text()).not.toBe("");
@@ -140,7 +144,6 @@ $(function() {
        */
       it('Feed is loaded with content for second feed', function (done) {
         loadFeed(1, function () {
-          var entries = $('.feed').find('.entry'), entryValue;
           entries.each(function (index, entry) {
             expect($(entry).find('h2').text()).toBeDefined();
             expect($(entry).find('h2').text()).not.toBe("");
@@ -157,7 +160,6 @@ $(function() {
        */
       it('Feed is loaded with content for third feed', function (done) {
         loadFeed(2, function () {
-          var entries = $('.feed').find('.entry'), entryValue;
           entries.each(function (index, entry) {
             expect($(entry).find('h2').text()).toBeDefined();
             expect($(entry).find('h2').text()).not.toBe("");
@@ -174,7 +176,6 @@ $(function() {
        */
       it('Feed is loaded with content for fourth feed', function (done) {
         loadFeed(3, function () {
-          var entries = $('.feed').find('.entry'), entryValue;
           entries.each(function (index, entry) {
             expect($(entry).find('h2').text()).toBeDefined();
             expect($(entry).find('h2').text()).not.toBe("");
